@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "kendo-grid"
+  "defaultProject": "kendo-grid",
+  "cli": {
+    "analytics": "a9f456bc-55c0-4bfe-a1a6-ff0f835e81e1"
+  }
 }
