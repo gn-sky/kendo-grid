@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { products } from './products';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,4 @@ import { products } from './products';
 })
 export class AppComponent {
   title = 'kendo-grid';
-  gridData: any[] = products;  
 }
