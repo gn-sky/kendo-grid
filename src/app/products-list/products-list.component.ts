@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PageChangeEvent } from '@progress/kendo-angular-grid';
+import { PageChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { products } from '../products';
 
 @Component({
@@ -9,10 +9,9 @@ import { products } from '../products';
 })
 export class ProductsListComponent implements OnInit {
 
-  public gridView: any;
+  public gridView!: GridDataResult;
   public pageSize = 10;
   public skip = 0;
-  private data: any;
 
   private items = products;
 
