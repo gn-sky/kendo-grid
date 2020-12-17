@@ -1,9 +1,13 @@
-<kendo-grid [data]="gridView"
-        [pageSize]="pageSize"
-        [skip]="skip"
+<kendo-grid 
+        [data]="gridData"
+        [pageSize]="$any(state).take"
+        [skip]="$any(state).skip"
+        [sort]="$any(state).sort"
+        [filter]="$any(state).filter"
+        [sortable]="true"
         [pageable]="true"
-        [height]="500"
-        (pageChange)="pageChange($event)"
+        [filterable]="true"
+        (dataStateChange)="dataStateChange($event)"
     >
     <kendo-grid-column field="ProductID" title="ID" [width]="40">
     </kendo-grid-column>

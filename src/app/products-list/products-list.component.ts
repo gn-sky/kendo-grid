@@ -1,36 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { PageChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
+import { Component } from '@angular/core';
+import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { products } from '../products';
+import { process, State } from '@progress/kendo-data-query';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent {
 
-  public gridView!: GridDataResult;
-  public pageSize = 10;
-  public skip = 0;
+  public state: State = {
+    skip: 0,
+    take: 10,
 
-  private items = products;
+    // Initial filter descriptory
+    filter: {
+      logic: 'and',
+      filters: [{ field: 'ProductName', operator: 'contains', value: 'Chef' }]
+    }
+  };
 
-  constructor() {
-    this.loadItems();
-  }
+  public gridData: GridDataResult = process(products, this.state);
 
-  ngOnInit(): void {
-  }
-
-  public pageChange(event: PageChangeEvent): void {
-    this.skip = event.skip;
-    this.loadItems();
-  }  
-
-  private loadItems(): void {
-    this.gridView = {
-        data: this.items.slice(this.skip, this.skip + this.pageSize),
-        total: this.items.length
-    };
-  }
+  public dataStateChange(state: DataStateChangeEvent): void {
+      this.state = state;
+      this.gridData = process(products, this.state);
+  } 
 }
